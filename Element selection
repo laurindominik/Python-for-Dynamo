@@ -1,0 +1,21 @@
+import clr
+
+#Import the Revit API
+clr.AddReference('RevitAPI')
+clr.AddReference('RevitAPIUI')
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.UI import *
+
+#Import DocumentManager and TransactionManager
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+uidoc = uiapp.ActiveUIDocument
+
+sel = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element)
+
+OUT = sel
